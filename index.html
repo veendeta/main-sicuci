@@ -1,0 +1,181 @@
+<!--
+Project: Sicuci Laundry - Static Website
+Files included below (save each to separate files):
+- index.html
+- styles.css
+- script.js
+
+The main logo image is referenced from: /mnt/data/sicuciPrimary.png (provided by the user)
+
+Instructions: Save each section below into their respective filenames and open index.html in a browser.
+-->
+
+<!-- ===================== index.html ===================== -->
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sicuci Laundry — Laundry Otomatis &amp; QRIS</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Sicuci Laundry - laundry otomatis, cepat, higienis, dan terjangkau. Pembayaran QRIS." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">
+        <img src="/mnt/data/sicuciPrimary.png" alt="Sicuci logo" class="logo">
+        <span class="brand-title">Sicuci Laundry</span>
+      </a>
+      <nav class="nav" id="mainNav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="mobileToggle" class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content fade-in">
+          <h1>Laundry otomatis, cepat, dan terjangkau — dengan QRIS</h1>
+          <p class="lead">Sicuci menghadirkan pengalaman laundry modern: pesan mudah, bayar pakai QRIS, dan ambil pakaian bersih tanpa ribet.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#contact">Order Now</a>
+            <a class="btn outline" href="#services">Lihat Layanan</a>
+          </div>
+          <ul class="features">
+            <li>✅ Pembayaran QRIS</li>
+            <li>✅ Mesin otomatis &amp; higienis</li>
+            <li>✅ Cepat &amp; Harga terjangkau</li>
+          </ul>
+        </div>
+        <div class="hero-visual fade-in delay-1">
+          <div class="device-card">
+            <img src="/mnt/data/sicuciPrimary.png" alt="Sicuci mascot" />
+            <div class="device-info">
+              <strong>Sicuci Kiosk</strong>
+              <small>Scan QRIS • Pilih layanan • Ambil notifikasi</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about container fade-in">
+      <h2>About Us</h2>
+      <p class="muted">Visi: Menjadi jaringan laundry modern dengan sistem inovatif yang menghadirkan kemudahan, efisiensi, kenyamanan, dan harga terjangkau.</p>
+      <div class="mission-grid">
+        <div class="mission">
+          <h3>Nilai Kami</h3>
+          <ul>
+            <li>Kemudahan lewat teknologi</li>
+            <li>Hasil cucian bersih &amp; higienis</li>
+            <li>Pelayanan cepat &amp; nyaman</li>
+            <li>Ramah lingkungan</li>
+          </ul>
+        </div>
+        <div class="mission">
+          <h3>Misi</h3>
+          <ol>
+            <li>Menghadirkan layanan laundry modern berbasis teknologi.</li>
+            <li>Menjamin hasil cucian yang bersih dan berkualitas.</li>
+            <li>Memberikan pelayanan cepat, efisien, dan terjangkau.</li>
+            <li>Terus berinovasi untuk layanan berkelanjutan.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services container">
+      <h2>Services</h2>
+      <div class="cards">
+        <article class="card fade-in">
+          <div class="icon">🧺</div>
+          <h4>Wash &amp; Fold</h4>
+          <p>Pilihan ekonomis — dicuci, dikeringkan, dan dilipat rapi.</p>
+        </article>
+
+        <article class="card fade-in delay-1">
+          <div class="icon">✨</div>
+          <h4>Dry Cleaning</h4>
+          <p>Perawatan khusus untuk pakaian berbahan halus.</p>
+        </article>
+
+        <article class="card fade-in delay-2">
+          <div class="icon">🧷</div>
+          <h4>Ironing</h4>
+          <p>Setrika profesional supaya pakaian selalu rapi.</p>
+        </article>
+
+        <article class="card fade-in delay-3">
+          <div class="icon">⚡</div>
+          <h4>Express</h4>
+          <p>Layanan cepat untuk kebutuhan mendadak (ekspres).</p>
+        </article>
+      </div>
+      <p class="note">Pembayaran mudah melalui QRIS di setiap kiosk Sicuci.</p>
+    </section>
+
+    <section id="contact" class="contact container fade-in">
+      <h2>Contact Us</h2>
+      <div class="contact-grid">
+        <form id="contactForm" class="contact-form" novalidate>
+          <label for="name">Nama</label>
+          <input id="name" name="name" type="text" required placeholder="Nama Anda">
+
+          <label for="phone">No. Telepon</label>
+          <input id="phone" name="phone" type="tel" required placeholder="08xxxxxxxxxx">
+
+          <label for="service">Layanan</label>
+          <select id="service" name="service">
+            <option>Wash & Fold</option>
+            <option>Dry Cleaning</option>
+            <option>Ironing</option>
+            <option>Express</option>
+          </select>
+
+          <label for="message">Pesan</label>
+          <textarea id="message" name="message" rows="4" placeholder="Alamat atau catatan tambahan"></textarea>
+
+          <div class="form-row">
+            <button class="btn primary" type="submit">Kirim</button>
+            <button class="btn outline" type="button" id="payQris">Tampilkan QRIS</button>
+          </div>
+        </form>
+
+        <div class="contact-info">
+          <p><strong>Lokasi:</strong> Jalan Contoh No. 123, Kota Anda</p>
+          <p><strong>Jam Operasional:</strong> 06:00 — 22:00</p>
+          <div class="map">
+            <!-- Replace src with your Google Maps embedded link -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p class="small muted">Atau scan QRIS pada kiosk Sicuci untuk memulai layanan.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Sicuci Laundry. All rights reserved.</div>
+      <div class="small muted">Designed for modern, hygienic &amp; affordable laundry experiences.</div>
+    </div>
+  </footer>
+
+  <div id="qrisModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">×</button>
+      <h3>Scan QRIS untuk Pembayaran</h3>
+      <p>Silakan scan kode QRIS di kiosk Sicuci. (Demo: placeholder)</p>
+      <div class="qris-placeholder">[QRIS placeholder]</div>
+    </div>
+  </div>
+
