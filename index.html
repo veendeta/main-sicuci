@@ -1,181 +1,474 @@
-<!--
-Project: Sicuci Laundry - Static Website
-Files included below (save each to separate files):
-- index.html
-- styles.css
-- script.js
-
-The main logo image is referenced from: /mnt/data/sicuciPrimary.png (provided by the user)
-
-Instructions: Save each section below into their respective filenames and open index.html in a browser.
--->
-
-<!-- ===================== index.html ===================== -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sicuci Laundry — Laundry Otomatis &amp; QRIS</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="description" content="Sicuci Laundry - laundry otomatis, cepat, higienis, dan terjangkau. Pembayaran QRIS." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sicuci Laundry</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F8FAFC;
+  --primary:#1F3A5F;
+  --secondary:#E6F0FA;
+  --cta:#25D366;
+  --text:#334155;
+  --muted:#475569;
+  --divider:#E2E8F0;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+}
+
+a{text-decoration:none;color:inherit}
+
+/* ================= HEADER ================= */
+header{
+  position:sticky;
+  top:0;
+  background:rgba(248,250,252,.9);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--divider);
+  z-index:1000;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo img{height:96px}
+
+.nav ul{
+  list-style:none;
+  display:flex;
+  gap:36px;
+  font-weight:600;
+  color:var(--primary);
+}
+
+.nav ul li a{
+  position:relative;
+  padding-bottom:4px;
+}
+
+.nav ul li a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:var(--primary);
+  transition:.2s ease;
+}
+
+.nav ul li a:hover::after{width:100%}
+
+.menu-toggle{display:none;font-size:26px;cursor:pointer}
+
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  display:none;
+  position:absolute;
+  top:120px;
+  right:20px;
+  background:#fff;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 20px 48px rgba(0,0,0,.18);
+}
+
+.mobile-menu a{
+  display:block;
+  padding:14px 8px;
+  font-weight:600;
+  color:var(--primary);
+}
+
+/* ================= SECTIONS ================= */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:96px 20px;
+}
+
+section h2{
+  color:var(--primary);
+  font-size:32px;
+  margin-bottom:24px;
+}
+
+/* ================= HERO ================= */
+.hero h1{
+  font-size:44px;
+  font-weight:700;
+  color:var(--primary);
+  max-width:720px;
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:560px;
+  color:var(--muted);
+  margin-bottom:32px;
+}
+
+/* ================= BUTTON ================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  background:var(--cta);
+  color:#fff;
+  padding:14px 28px;
+  border-radius:999px;
+  font-weight:600;
+  transition:.15s ease;
+}
+
+.btn.secondary{
+  background:#fff;
+  color:var(--primary);
+  border:1px solid var(--divider);
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 12px 26px rgba(0,0,0,.18);
+}
+
+/* ================= CARDS ================= */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  margin-top:56px;
+}
+
+.card{
+  background:#fff;
+  padding:28px;
+  border-radius:20px;
+  border:1px solid var(--divider);
+  box-shadow:0 8px 24px rgba(15,23,42,.06);
+}
+
+.card h4{color:var(--primary);margin-bottom:12px}
+
+/* ================= SLIDER ================= */
+.slider{
+  max-width:720px;
+  margin:40px auto 0;
+  position:relative;
+}
+
+.slide{
+  display:none;
+  background:#fff;
+  padding:40px;
+  border-radius:24px;
+  border:1px solid var(--divider);
+  text-align:center;
+}
+
+.slide img{
+  max-width:260px;
+  opacity:.85;
+}
+
+.slide.active{display:block}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#fff;
+  border:1px solid var(--divider);
+  border-radius:50%;
+  width:44px;
+  height:44px;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.prev{left:-20px}
+.next{right:-20px}
+
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:16px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--divider);
+  cursor:pointer;
+}
+
+.dot.active{background:var(--primary)}
+
+/* ================= TABLE ================= */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:24px;
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+}
+
+th,td{
+  padding:14px;
+  border-bottom:1px solid var(--divider);
+}
+
+th{
+  background:var(--secondary);
+  color:var(--primary);
+}
+
+/* ================= MAP ================= */
+iframe{
+  width:100%;
+  height:360px;
+  border:0;
+  border-radius:24px;
+  margin:24px 0;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:var(--secondary);
+  padding:56px 20px;
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:28px;
+}
+
+.footer-bottom{
+  margin-top:32px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ================= FLOATING WA ================= */
+.floating-wa{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:var(--cta);
+  color:#fff;
+  padding:16px 24px;
+  border-radius:999px;
+  font-weight:600;
+box-shadow:0 12px 28px rgba(0,0,0,.18);
+  transition:transform .15s ease,box-shadow .15s ease
+}
+.floating-wa:hover{transform:translateY(-2px);box-shadow:0 16px 32px rgba(0,0,0,.22)}
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .nav ul{display:none}
+  .menu-toggle{display:block}
+  .logo img{height:72px}
+  section{padding:72px 20px}
+  .prev{left:0}
+  .next{right:0}
+}
+</style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home">
-        <img src="/mnt/data/sicuciPrimary.png" alt="Sicuci logo" class="logo">
-        <span class="brand-title">Sicuci Laundry</span>
-      </a>
-      <nav class="nav" id="mainNav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button id="mobileToggle" class="mobile-toggle" aria-label="Toggle navigation">☰</button>
-    </div>
-  </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-content fade-in">
-          <h1>Laundry otomatis, cepat, dan terjangkau — dengan QRIS</h1>
-          <p class="lead">Sicuci menghadirkan pengalaman laundry modern: pesan mudah, bayar pakai QRIS, dan ambil pakaian bersih tanpa ribet.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="#contact">Order Now</a>
-            <a class="btn outline" href="#services">Lihat Layanan</a>
-          </div>
-          <ul class="features">
-            <li>✅ Pembayaran QRIS</li>
-            <li>✅ Mesin otomatis &amp; higienis</li>
-            <li>✅ Cepat &amp; Harga terjangkau</li>
-          </ul>
-        </div>
-        <div class="hero-visual fade-in delay-1">
-          <div class="device-card">
-            <img src="/mnt/data/sicuciPrimary.png" alt="Sicuci mascot" />
-            <div class="device-info">
-              <strong>Sicuci Kiosk</strong>
-              <small>Scan QRIS • Pilih layanan • Ambil notifikasi</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<header>
+  <div class="nav">
+    <div class="logo"><img src="LogoHeader - SICUCI.png" alt="sicuci"></div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contacts</a></li>
+    </ul>
+    <div class="menu-toggle">☰</div>
+  </div>
+</header>
 
-    <section id="about" class="about container fade-in">
-      <h2>About Us</h2>
-      <p class="muted">Visi: Menjadi jaringan laundry modern dengan sistem inovatif yang menghadirkan kemudahan, efisiensi, kenyamanan, dan harga terjangkau.</p>
-      <div class="mission-grid">
-        <div class="mission">
-          <h3>Nilai Kami</h3>
-          <ul>
-            <li>Kemudahan lewat teknologi</li>
-            <li>Hasil cucian bersih &amp; higienis</li>
-            <li>Pelayanan cepat &amp; nyaman</li>
-            <li>Ramah lingkungan</li>
-          </ul>
-        </div>
-        <div class="mission">
-          <h3>Misi</h3>
-          <ol>
-            <li>Menghadirkan layanan laundry modern berbasis teknologi.</li>
-            <li>Menjamin hasil cucian yang bersih dan berkualitas.</li>
-            <li>Memberikan pelayanan cepat, efisien, dan terjangkau.</li>
-            <li>Terus berinovasi untuk layanan berkelanjutan.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+<!-- ================= HOME ================= -->
+<section id="home" class="hero">
+  <h1>Nyuci Sendiri Itu Berat. Biar sicuci Aja.</h1>
+  <p>Laundry modern, rapi, dan transparan untuk kebutuhan harian Anda.</p>
 
-    <section id="services" class="services container">
-      <h2>Services</h2>
-      <div class="cards">
-        <article class="card fade-in">
-          <div class="icon">🧺</div>
-          <h4>Wash &amp; Fold</h4>
-          <p>Pilihan ekonomis — dicuci, dikeringkan, dan dilipat rapi.</p>
-        </article>
+  <div style="display:flex;gap:16px">
+    <a class="btn" href="#contact">Contact Us</a>
+    <a class="btn secondary" href="#services">Check Our Services</a>
+  </div>
 
-        <article class="card fade-in delay-1">
-          <div class="icon">✨</div>
-          <h4>Dry Cleaning</h4>
-          <p>Perawatan khusus untuk pakaian berbahan halus.</p>
-        </article>
+  <div class="cards">
+    <div class="card"><h4>Bebas Capek, Terima Beres</h4><p>Lupakan tumpukan cucian di akhir pekan. Kami jemput, cuci, setrika, dan antar kembali ke depan pintu Anda.</p></div>
+    <div class="card"><h4>Treatment Spesial Satuan</h4><p>Jas, bed cover, atau selimut kesayangan butuh penanganan khusus? Tenang, tim ahli kami merawatnya dengan detail dan hati-hati.</p></div>
+    <div class="card"><h4>Titip Sekarang, Kami Antar Pulang</h4><p>Cukup drop cucian Anda di outlet, dan lupakan sisanya. Setelah bersih dan rapi, kurir kami akan mengantarkannya langsung ke rumah Anda. Gratis!</p></div>
+  </div>
+</section>
 
-        <article class="card fade-in delay-2">
-          <div class="icon">🧷</div>
-          <h4>Ironing</h4>
-          <p>Setrika profesional supaya pakaian selalu rapi.</p>
-        </article>
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <h2>About sicuci</h2>
+  <p>Sicuci hadir sebagai jaringan laundry modern yang mengutamakan kemudahan, efisiensi, dan kualitas. Kami menggabungkan peralatan modern, proses higienis, dan layanan ramah untuk membuat urusan laundry menjadi lebih praktis dan terpercaya.</p>
 
-        <article class="card fade-in delay-3">
-          <div class="icon">⚡</div>
-          <h4>Express</h4>
-          <p>Layanan cepat untuk kebutuhan mendadak (ekspres).</p>
-        </article>
-      </div>
-      <p class="note">Pembayaran mudah melalui QRIS di setiap kiosk Sicuci.</p>
-    </section>
+  <div class="slider">
+    <div class="slide active"><img src="LogoHeader - SICUCI.png"></div>
+    <div class="slide"><img src="LogoHeader - SICUCI.png"></div>
+    <div class="slide"><img src="LogoHeader - SICUCI.png"></div>
 
-    <section id="contact" class="contact container fade-in">
-      <h2>Contact Us</h2>
-      <div class="contact-grid">
-        <form id="contactForm" class="contact-form" novalidate>
-          <label for="name">Nama</label>
-          <input id="name" name="name" type="text" required placeholder="Nama Anda">
+    <button class="slider-btn prev">‹</button>
+    <button class="slider-btn next">›</button>
 
-          <label for="phone">No. Telepon</label>
-          <input id="phone" name="phone" type="tel" required placeholder="08xxxxxxxxxx">
-
-          <label for="service">Layanan</label>
-          <select id="service" name="service">
-            <option>Wash & Fold</option>
-            <option>Dry Cleaning</option>
-            <option>Ironing</option>
-            <option>Express</option>
-          </select>
-
-          <label for="message">Pesan</label>
-          <textarea id="message" name="message" rows="4" placeholder="Alamat atau catatan tambahan"></textarea>
-
-          <div class="form-row">
-            <button class="btn primary" type="submit">Kirim</button>
-            <button class="btn outline" type="button" id="payQris">Tampilkan QRIS</button>
-          </div>
-        </form>
-
-        <div class="contact-info">
-          <p><strong>Lokasi:</strong> Jalan Contoh No. 123, Kota Anda</p>
-          <p><strong>Jam Operasional:</strong> 06:00 — 22:00</p>
-          <div class="map">
-            <!-- Replace src with your Google Maps embedded link -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-          <p class="small muted">Atau scan QRIS pada kiosk Sicuci untuk memulai layanan.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Sicuci Laundry. All rights reserved.</div>
-      <div class="small muted">Designed for modern, hygienic &amp; affordable laundry experiences.</div>
-    </div>
-  </footer>
-
-  <div id="qrisModal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="closeModal">×</button>
-      <h3>Scan QRIS untuk Pembayaran</h3>
-      <p>Silakan scan kode QRIS di kiosk Sicuci. (Demo: placeholder)</p>
-      <div class="qris-placeholder">[QRIS placeholder]</div>
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
   </div>
 
+<h3>Visi:</h3>
+<p>Menjadi jaringan laundry modern dengan sistem inovatif yang menghadirkan kemudahan, efisiensi, kenyamanan, dan harga terjangkau</p>
+
+<h3>Misi:</h3>
+<p>•Menghadirkan layanan laundry modern berbasis teknologi untuk kemudahan pelanggan.</br>
+•Menjamin hasil cucian yang bersih, higienis, dan berkualitas tinggi.</br>
+•Memberikan pelayanan cepat, efisien, nyaman, dan dengan harga yang terjangkau.</br>
+•Terus berinovasi untuk menciptakan layanan laundry yang ramah lingkungan dan berkelanjutan.
+</p>
+
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <h2>Services & Pricelist</h2>
+
+  <h3>Self Service & Drop Off</h3>
+  <table>
+    <tr><th>Layanan</th><th>Harga</th><th>Load</th></tr>
+    <tr><td>Cuci Saja</td><td>Rp20.000 / Load</td><td>0-8 kg</td></tr>
+    <tr><td>Kering Saja</td><td>Rp20.000 / Load</td><td>0-8 kg</td></tr>
+    <tr><td>Cuci + Kering (Drop Off)</td><td>Rp45.000 / Load</td><td>0-8 kg</td></tr>
+  </table>
+
+  <h3 style="margin-top:40px">Full Service & Express</h3>
+  <table>
+    <tr><th>Layanan</th><th>Harga</th><th>Minimal</th></tr>
+    <tr><td>Cuci + Kering + Setrika</td><td>Rp11.000 / kg</td><td>3–5 kg</td></tr>
+    <tr><td>Cuci + Kering + Setrika</td><td>Rp9.000 / kg</td><td>≥ 6 kg</td></tr>
+    <tr><td>Express 6 Jam</td><td>Rp15.000 / kg</td><td>3 kg</td></tr>
+  </table>
+
+  <h3 style="margin-top:40px">Satuan</h3>
+  <table>
+    <tr><th>Item</th><th>Harga</th></tr>
+    <tr><td>Bed Cover Kecil</td><td>Rp 25.000</td></tr>
+    <tr><td>Bed Cover Sedang</td><td>Rp 35.000</td></tr>
+    <tr><td>Bed Cover Besar</td><td>Rp 45.000</td></tr>
+    <tr><td>Sprei Kecil - Sedang</td><td>Rp 15.000</td></tr>
+    <tr><td>Sprei Besar</td><td>Rp 25.000</td></tr>
+    <tr><td>Set Sprei Kecil - Sedang</td><td>Rp 20.000</td></tr>
+    <tr><td>Set Sprei Besar</td><td>RP 30.000</td></tr>
+    <tr><td>Jaket Tipis/ Hoodie</td><td>Rp 25.000</td></tr>
+    <tr><td>Jaket Kulit/ Blazer</td><td>Rp 50.000</td></tr>
+    <tr><td>Selimut Tipis - Sedang</td><td>Rp 15.000</td></tr>
+    <tr><td>Selimut Besar</td><td>Rp 25.000</td></tr>
+    <tr><td>Boneka (Kecil – Sedang)</td><td>Rp 15.000 – Rp 20.000</td></tr>
+    <tr><td>Tas Gunung Kecil</td><td>Rp 50.000</td></tr>
+    <tr><td>Tas Gunung Sedang</td><td>Rp 60.000</td></tr>
+    <tr><td>Tas Gunung Besar</td><td>Rp 75.000</td></tr>
+  </table>
+
+  <p style="margin-top:16px;color:var(--muted)">
+    *Harga dapat berubah. Konfirmasi detail via WhatsApp untuk layanan khusus.
+  </p>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <h2>Contacts</h2>
+
+  <iframe 
+    src="https://www.google.com/maps?q=-6.1618452,106.8934643&output=embed"
+    loading="lazy">
+  </iframe>
+
+  <p><strong>Jam Operasional:</strong> 07:00 - 22:00 WIB</p>
+<p><strong>WhatsApp:</strong> +62 858-1059-9600</p>
+  <p><strong>Email:</strong> sicuci.hub@gmail.com</p>
+  <p><strong>Address:</strong> Apartement Gading Mediterania Tower C Lobi Utara, Jl. Boulevard Bukit Gading Raya No.38, West Kelapa Gading, Kelapa Gading, North Jakarta City, Jakarta 14240</p>
+</section>
+
+<footer>
+<div class="footer-inner">
+    <div>
+      <strong>sicuci Laundry</strong><br>
+      Apartement Gading Mediterania<br>
+      Tower C Lobi Utara, Jakarta
+    </div>
+    <div>
+      <strong>Contact</strong><br>
+      WhatsApp: 0858-1059-9600<br>
+      Email: sicuci.hub@gmail.com
+    </div>
+    <div>
+      <strong>Social</strong><br>
+      <a href="https://www.instagram.com/sicuci.hub/">Instagram</a><br>
+      <a href="https://www.tiktok.com/@sicuci.hub">TikTok</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 sicuci Laundry — All rights reserved.
+  </div>
+</footer>
+
+<a class="floating-wa" href="https://wa.me/6285810599600">WhatsApp</a>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+let index=0;
+
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[i].classList.add('active');
+  dots[i].classList.add('active');
+  index=i;
+}
+
+document.querySelector('.next').onclick=()=>showSlide((index+1)%slides.length);
+document.querySelector('.prev').onclick=()=>showSlide((index-1+slides.length)%slides.length);
+dots.forEach((d,i)=>d.onclick=()=>showSlide(i));
+setInterval(()=>showSlide((index+1)%slides.length),5000);
+</script>
+
+</body>
+</html>
